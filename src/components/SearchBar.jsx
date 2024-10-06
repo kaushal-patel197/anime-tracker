@@ -16,6 +16,7 @@ const Button = styled.button`
 `
 
 const SearchBar = (props) => {
+  const { onSearch } = props
   const [searchTerm, setSearchTerm] = useState('')
 
   const handleChange = (e) => {
@@ -24,7 +25,7 @@ const SearchBar = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(searchTerm)
+    onSearch(searchTerm)
   }
 
   return (

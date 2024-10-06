@@ -2,10 +2,14 @@ import SearchBar from './components/SearchBar'
 import AnimeList from './components/AnimeList'
 
 function App() {
+  const onSearch = (e) => {
+    console.log(e)
+  }
+
   return (
     <>
-      <SearchBar hi={`hi`} />
-      <AnimeList hi={'hi'} />
+      <SearchBar onSearch={onSearch} />
+      <AnimeList />
     </>
   )
 }
