@@ -13,8 +13,6 @@ const fetchAnime = async (searchTerm) => {
     data: { data },
   } = await axios.get(`https://api.jikan.moe/v4/anime?q=${searchTerm}`)
 
-  console.log(data)
-
   return data
 }
 
