@@ -1,4 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import styled from 'styled-components'
+
+const Input = styled.input`
+  padding: 1rem;
+  width: 30rem;
+  margin-right: 1rem;
+`
+
+const Button = styled.button`
+  padding: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: 0.2rem solid #007bff;
+  cursor: pointer;
+`
 
 const SearchBar = (props) => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -15,8 +30,8 @@ const SearchBar = (props) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input placeholder="Search Anime List" onChange={handleChange} />
-        <button type="submit">Search</button>
+        <Input placeholder="Search Anime List" onChange={handleChange} />
+        <Button type="submit">Search</Button>
       </form>
     </>
   )
