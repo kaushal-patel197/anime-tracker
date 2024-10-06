@@ -27,9 +27,9 @@ const AnimeCard = (props) => {
   return (
     <>
       <Card>
-        <Title>{anime.name}</Title>
-        <Image src={anime.image} alt={anime.name} />
-        <Description>{anime.description}</Description>
+        <Title>{anime.title}</Title>
+        <Image src={anime.images.webp.image_url} alt={anime.title} />
+        <Description>{anime.synopsis}</Description>
       </Card>
     </>
   )
