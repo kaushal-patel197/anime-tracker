@@ -1,9 +1,13 @@
-import { useState } from 'react'
+import SearchBar from './components/SearchBar'
+import AnimeList from './components/AnimeList'
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return <>{count}</>
+  return (
+    <>
+      <SearchBar hi={`hi`} />
+      <AnimeList hi={'hi'} />
+    </>
+  )
 }
 
 export default App
