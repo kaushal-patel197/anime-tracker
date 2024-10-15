@@ -19,14 +19,18 @@ const fetchAnime = async (searchTerm) => {
 const AnimeList = (props) => {
   const { searchTerm } = props
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ['anime', searchTerm],
     queryFn: () => fetchAnime(searchTerm),
     enabled: !!searchTerm,
   })
 
-  if (isLoading || isError) {
-    return
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
+  if (isError) {
+    return <div>Error {error.message}</div>
   }
 
   return (

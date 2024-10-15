@@ -1,6 +1,20 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+`
+
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+const ErrorLabel = styled.label`
+  color: red;
+`
+
 const Input = styled.input`
   padding: 1rem;
   width: 30rem;
@@ -18,6 +32,7 @@ const Button = styled.button`
 const SearchBar = (props) => {
   const { onSearch } = props
   const [searchTerm, setSearchTerm] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value)
@@ -25,15 +40,30 @@ const SearchBar = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    if (!searchTerm.trim()) {
+      setErrorMessage('Please enter an Anime Title')
+      return
+    }
+
+    setErrorMessage('')
     onSearch(searchTerm)
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <Input placeholder="Search Anime List" onChange={handleChange} />
-        <Button type="submit">Search</Button>
-      </form>
+      <FormContainer onSubmit={handleSubmit}>
+        <InputContainer>
+          <Input
+            id="anime-search"
+            type="text"
+            placeholder="Search Anime List"
+            onChange={handleChange}
+          />
+          <Button type="submit">Search</Button>
+        </InputContainer>
+        <ErrorLabel htmlFor="anime-search">{errorMessage}</ErrorLabel>
+      </FormContainer>
     </>
   )
 }
