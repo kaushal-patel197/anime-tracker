@@ -11,9 +11,29 @@ function App() {
     setSearchTerm(searchTerm)
   }
 
+  const handleIncrement = (animeId) => {
+    setWatchlist(
+      watchlist.map((anime) =>
+        anime.mal_id === animeId
+          ? { ...anime, episodeCount: anime.episodeCount + 1 }
+          : anime
+      )
+    )
+  }
+
+  const handleDecrement = (animeId) => {
+    setWatchlist(
+      watchlist.map((anime) =>
+        anime.mal_id === animeId && anime.episodeCount > 0
+          ? { ...anime, episodeCount: anime.episodeCount - 1 }
+          : anime
+      )
+    )
+  }
+
   const handleAddToWatchlist = (anime) => {
     if (!watchlist.find((item) => item.mal_id === anime.mal_id)) {
-      setWatchlist([...watchlist, anime])
+      setWatchlist([...watchlist, { ...anime, episodeCount: 0 }])
     }
   }
 
@@ -27,6 +47,8 @@ function App() {
       <Watchlist
         watchlist={watchlist}
         handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+        handleIncrement={handleIncrement}
+        handleDecrement={handleDecrement}
       />
       {searchTerm && (
         <AnimeList

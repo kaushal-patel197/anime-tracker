@@ -7,7 +7,12 @@ const ListContainer = styled.div`
 `
 
 const Watchlist = (props) => {
-  const { watchlist, handleRemoveFromWatchlist } = props
+  const {
+    watchlist,
+    handleRemoveFromWatchlist,
+    handleIncrement,
+    handleDecrement,
+  } = props
 
   return (
     <>
@@ -19,6 +24,9 @@ const Watchlist = (props) => {
           {watchlist.map((anime) => (
             <div key={anime.mal_id}>
               <AnimeCard anime={anime} />
+              <p>Episodes Watched: {anime.episodeCount}</p>
+              <button onClick={() => handleIncrement(anime.mal_id)}>+</button>
+              <button onClick={() => handleDecrement(anime.mal_id)}>-</button>
               <button onClick={() => handleRemoveFromWatchlist(anime.mal_id)}>
                 Remove from Watchlist
               </button>
