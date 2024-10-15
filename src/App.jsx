@@ -1,7 +1,7 @@
-import dummyAnimeList from './data/anime'
 import SearchBar from './components/SearchBar'
 import AnimeList from './components/AnimeList'
 import { useState } from 'react'
+import Watchlist from './components/Watchlist'
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -20,6 +20,7 @@ function App() {
   return (
     <>
       <SearchBar onSearch={onSearch} />
+      <Watchlist watchlist={watchlist} />
       {searchTerm && (
         <AnimeList searchTerm={searchTerm} handleWatchlist={handleWatchlist} />
       )}
