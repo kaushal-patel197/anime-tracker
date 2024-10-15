@@ -1,7 +1,13 @@
 import AnimeCard from './AnimeCard'
+import { styled } from 'styled-components'
+
+const ListContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
 
 const Watchlist = (props) => {
-  const { watchlist } = props
+  const { watchlist, handleRemoveFromWatchlist } = props
 
   return (
     <>
@@ -9,18 +15,16 @@ const Watchlist = (props) => {
       {watchlist.length === 0 ? (
         <p>No anime added to watchlist</p>
       ) : (
-        <div>
+        <ListContainer>
           {watchlist.map((anime) => (
             <div key={anime.mal_id}>
               <AnimeCard anime={anime} />
-              <button
-                onClick={() => alert(`Removing ${anime.title} from watchlist`)}
-              >
+              <button onClick={() => handleRemoveFromWatchlist(anime.mal_id)}>
                 Remove from Watchlist
               </button>
             </div>
           ))}
-        </div>
+        </ListContainer>
       )}
     </>
   )

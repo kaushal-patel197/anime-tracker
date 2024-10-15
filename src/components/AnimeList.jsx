@@ -17,7 +17,7 @@ const fetchAnime = async (searchTerm) => {
 }
 
 const AnimeList = (props) => {
-  const { searchTerm, handleWatchlist } = props
+  const { searchTerm, handleAddToWatchlist } = props
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['anime', searchTerm],
@@ -40,7 +40,7 @@ const AnimeList = (props) => {
           <AnimeCard
             key={anime.mal_id}
             anime={anime}
-            handleWatchlist={handleWatchlist}
+            handleAddToWatchlist={handleAddToWatchlist}
           />
         ))}
       </ListContainer>

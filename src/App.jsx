@@ -11,18 +11,28 @@ function App() {
     setSearchTerm(searchTerm)
   }
 
-  const handleWatchlist = (anime) => {
+  const handleAddToWatchlist = (anime) => {
     if (!watchlist.find((item) => item.mal_id === anime.mal_id)) {
       setWatchlist([...watchlist, anime])
     }
   }
 
+  const handleRemoveFromWatchlist = (animeId) => {
+    setWatchlist(watchlist.filter((item) => item.mal_id !== animeId))
+  }
+
   return (
     <>
       <SearchBar onSearch={onSearch} />
-      <Watchlist watchlist={watchlist} />
+      <Watchlist
+        watchlist={watchlist}
+        handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+      />
       {searchTerm && (
-        <AnimeList searchTerm={searchTerm} handleWatchlist={handleWatchlist} />
+        <AnimeList
+          searchTerm={searchTerm}
+          handleAddToWatchlist={handleAddToWatchlist}
+        />
       )}
     </>
   )
