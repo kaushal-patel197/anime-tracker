@@ -22,14 +22,17 @@ const Description = styled.p`
   font-size: 1.6rem;
 `
 
+const Button = styled.button``
+
 const AnimeCard = (props) => {
-  const { anime } = props
+  const { anime, handleWatchlist } = props
   return (
     <>
       <Card>
         <Title>{anime.title}</Title>
         <Image src={anime.images.webp.image_url} alt={anime.title} />
         <Description>{anime.synopsis}</Description>
+        <Button onClick={() => handleWatchlist(anime)}>Add to Watchlist</Button>
       </Card>
     </>
   )
