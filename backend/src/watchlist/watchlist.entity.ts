@@ -8,15 +8,15 @@ export class Watchlist {
   @PrimaryGeneratedColumn()
   id: number
 
-  @Field()
+  @Field(() => Int)
   @Column()
-  mal_id: string
+  mal_id: number
 
   @Field()
   @Column()
   title: string
 
   @Field(() => Int)
-  @Column()
+  @Column({ default: 0 })
   episodes: number
 }
