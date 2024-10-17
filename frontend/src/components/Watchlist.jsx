@@ -1,10 +1,19 @@
 import AnimeCard from './AnimeCard'
 import { styled } from 'styled-components'
+import { GET_WATCHLIST } from '../graphql/watchlist'
+import { useQuery } from '@tanstack/react-query'
 
 const ListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 `
+
+const fetchWatchlist = async () => {
+  const { data } = await client.query({
+    query: GET_WATCHLIST,
+  })
+  return data.getAllWatchlist
+}
 
 const Watchlist = (props) => {
   const {
@@ -14,9 +23,15 @@ const Watchlist = (props) => {
     handleDecrement,
   } = props
 
+  const { data } = useQuery({
+    queryKey: ['watchlist'],
+    queryFn: () => fetchWatchlist(),
+  })
+
   return (
     <>
       <h2>Watchlist</h2>
+      {data?.map((a) => console.log(a))}
       {watchlist.length === 0 ? (
         <p>No anime added to watchlist</p>
       ) : (
